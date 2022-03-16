@@ -7,12 +7,16 @@ CREATE TABLE discs (
     {/* flight(turn or fade), price(number) */}
 );
 
+DROP TABLE IF EXISTS drinks;
+
 CREATE TABLE drinks (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     temp TEXT NOT NULL,
     alcoholic TEXT NOT NULL
     {/* temp(hot or cold), alcoholic(yes or no) */}
 );
+
+DROP TABLE IF EXISTS games;
 
 CREATE TABLE games (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -21,12 +25,16 @@ CREATE TABLE games (
     {/* name, rating(number) */}
 );
 
+DROP TABLE IF EXISTS pets;
+
 CREATE TABLE pets (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     age SMALLINT
     {/* name, age(number) */}
 );
+
+DROP TABLE IF EXISTS pokemon;
 
 CREATE TABLE pokemon (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
