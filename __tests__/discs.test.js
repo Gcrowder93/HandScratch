@@ -18,8 +18,15 @@ describe('quotable routes', () => {
     const expected = {
       id: expect.any(String),
       flight: 'turn',
-      price: '14.99',
+      price: 15,
     };
     const res = await request(app).post('/api/v1/discs').send(expected);
+  });
+
+  it('should be able to list discs by id', async () => {
+    const disc = await Discs.insert({ flight: 'turn', price: 15 });
+    const res = await request(app).get(`/api/v1/discs/${disc.id}`);
+
+    expect(res.body).toEqual(disc);
   });
 });
