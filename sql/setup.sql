@@ -4,7 +4,6 @@ CREATE TABLE discs (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     flight TEXT NOT NULL,
     price SMALLINT
-    {/* flight(turn or fade), price(number) */}
 );
 
 DROP TABLE IF EXISTS drinks;
@@ -12,7 +11,7 @@ DROP TABLE IF EXISTS drinks;
 CREATE TABLE drinks (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     temp TEXT NOT NULL,
-    alcoholic TEXT NOT NULL
+    alcoholic BOOLEAN
     {/* temp(hot or cold), alcoholic(yes or no) */}
 );
 
