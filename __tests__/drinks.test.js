@@ -41,4 +41,20 @@ describe('quotable routes', () => {
 
     expect(res.body).toEqual(drinks);
   });
+
+  it('should be able to update a drink', async () => {
+    const drink = await Drinks.insert({ temp: 'hot', alcoholic: 'yes' });
+    const res = await request(app)
+      .patch(`/api/v1/drinks/${drink.id}`)
+      .send({ temp: 'cold' });
+
+    const expected = {
+      id: expect.any(String),
+      temp: 'cold',
+      alcoholic: true,
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Drinks.getById(drink.id)).toEqual(expected);
+  });
 });
