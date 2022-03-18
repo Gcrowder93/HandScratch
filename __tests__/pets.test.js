@@ -33,4 +33,20 @@ describe('quotable routes', () => {
 
     expect(res.body).toEqual(pets);
   });
+
+  it('should be able to update a pet', async () => {
+    const pet = await Pets.insert({ name: 'sophie', age: '11' });
+    const res = await request(app)
+      .patch(`/api/v1/pets/${pet.id}`)
+      .send({ age: '11' });
+
+    const expected = {
+      id: expect.any(String),
+      name: 'sophie',
+      age: 11,
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Pets.getById(pet.id)).toEqual(expected);
+  });
 });
