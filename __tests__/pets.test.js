@@ -18,4 +18,12 @@ describe('quotable routes', () => {
       .post('/api/v1/songs')
       .send({ name: 'sophie', age: '10' });
   });
+
+  it('should be able to list all pets', async () => {
+    const expected = await Pets.insert({
+      name: 'sophie',
+      age: '10',
+    });
+    const res = await request(app).get('/api/v1/pets');
+  });
 });
