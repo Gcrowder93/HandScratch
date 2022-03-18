@@ -49,4 +49,12 @@ describe('quotable routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Pets.getById(pet.id)).toEqual(expected);
   });
+
+  it('should be able to delete a pet', async () => {
+    const pet = await Pets.insert({ name: 'sophie', age: '11' });
+    const res = await request(app).delete(`/api/v1/pets/${pet.id}`);
+
+    expect(res.body).toEqual(pet);
+    expect(await Pets.getById(pet.id)).toBeNull();
+  });
 });
