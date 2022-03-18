@@ -30,7 +30,7 @@ describe('quotable routes', () => {
       {
         id: expect.any(String),
         temp: 'hot',
-        alcoholic: 'yes',
+        alcoholic: true,
       },
     ]);
   });
