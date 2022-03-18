@@ -12,4 +12,10 @@ describe('quotable routes', () => {
   afterAll(() => {
     pool.end();
   });
+
+  it('should be able to post a drink', async () => {
+    const res = await request(app)
+      .post('/api/v1/songs')
+      .send({ temp: 'hot', alcoholic: 'yes' });
+  });
 });
