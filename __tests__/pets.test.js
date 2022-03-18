@@ -26,4 +26,11 @@ describe('quotable routes', () => {
     });
     const res = await request(app).get('/api/v1/pets');
   });
+
+  it('should be able to list pets by id', async () => {
+    const pets = await Pets.insert({ name: 'sophie', age: '10' });
+    const res = await request(app).get(`/api/v1/pets/${pets.id}`);
+
+    expect(res.body).toEqual(pets);
+  });
 });
