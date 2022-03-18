@@ -3,7 +3,6 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Drinks = require('../lib/models/Drinks');
-const express = require('express');
 
 describe('quotable routes', () => {
   beforeEach(() => {
