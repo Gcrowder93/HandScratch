@@ -3,6 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const Drinks = require('../lib/models/Drinks');
+const express = require('express');
 
 describe('quotable routes', () => {
   beforeEach(() => {
@@ -56,5 +57,13 @@ describe('quotable routes', () => {
 
     expect(res.body).toEqual(expected);
     expect(await Drinks.getById(drink.id)).toEqual(expected);
+  });
+
+  it('should be able to delete a drink', async () => {
+    const drink = await Drinks.insert({ temp: 'hot', alcoholic: 'yes' });
+    const res = await request(app).delete(`/api/v1/drinks/${drink.id}`);
+
+    expect(res.body).toEqual(drink);
+    expect(await Drinks.getById(drink.id)).toBeNull();
   });
 });
