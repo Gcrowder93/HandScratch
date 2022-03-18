@@ -53,4 +53,20 @@ describe('quotable routes', () => {
     expect(res.body).toEqual(disc);
     expect(await Discs.getById(disc.id)).toBeNull();
   });
+
+  it('should be able to update a disc', async () => {
+    const disc = await Discs.insert({ flight: 'turn', price: 15 });
+    const res = await request(app)
+      .patch(`/api/v1/discs/${disc.id}`)
+      .send({ flight: 'fade' });
+
+    const expected = {
+      id: expect.any(String),
+      flight: 'fade',
+      price: 15,
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Discs.getById(disc.id)).toEqual(expected);
+  });
 });
