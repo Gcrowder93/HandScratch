@@ -33,4 +33,20 @@ describe('quotable routes', () => {
     });
     const res = await request(app).get('/api/v1/pokemon');
   });
+
+  it('should be able to update a pokemon', async () => {
+    const pokemon = await Pokemon.insert({ type: 'water', doesEvolve: 'true' });
+    const res = await request(app)
+      .patch(`/api/v1/pokemon/${pokemon.id}`)
+      .send({ type: 'water' });
+
+    const expected = {
+      id: expect.any(String),
+      type: 'water',
+      //   doesEvolve: true,
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Pokemon.getById(pokemon.id)).toEqual(expected);
+  });
 });
