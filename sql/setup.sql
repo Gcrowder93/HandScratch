@@ -35,5 +35,5 @@ DROP TABLE IF EXISTS pokemon;
 CREATE TABLE pokemon (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     type TEXT NOT NULL,
-    doesEvolve TEXT NOT NULL
+    doesEvolve BOOLEAN
 );
