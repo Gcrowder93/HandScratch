@@ -49,4 +49,12 @@ describe('quotable routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Pokemon.getById(pokemon.id)).toEqual(expected);
   });
+
+  it('should be able to delete a pokemon', async () => {
+    const pokemon = await Pokemon.insert({ type: 'water', doesEvolve: 'true' });
+    const res = await request(app).delete(`/api/v1/pokemon/${pokemon.id}`);
+
+    expect(res.body).toEqual(pokemon);
+    expect(await Pokemon.getById(pokemon.id)).toBeNull();
+  });
 });
